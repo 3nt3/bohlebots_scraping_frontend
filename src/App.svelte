@@ -62,6 +62,7 @@
               new Date(entry[2] * 1000).getMinutes() / 60,
           })),
         backgroundColor: colors[i],
+        pointRadius: 5,
       })),
     };
     // datasets: [
