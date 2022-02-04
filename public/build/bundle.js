@@ -19437,8 +19437,8 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			canvas = element("canvas");
-    			add_location(canvas, file, 89, 2, 2648);
-    			add_location(main, file, 88, 0, 2639);
+    			add_location(canvas, file, 89, 2, 2654);
+    			add_location(main, file, 88, 0, 2645);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19477,7 +19477,7 @@ var app = (function () {
     	onMount(async () => {
     		context = chartCanvas.getContext("2d");
     		Chart.register(ScatterController, LinearScale, PointElement, LineElement, TimeScale, plugin_tooltip, plugin_legend);
-    		let entries = await fetch("http://localhost:8000/").then(res => res.json());
+    		let entries = await fetch("htts://bohlebots.3nt3.de/api").then(res => res.json());
     		let names = [...new Set(entries.map(x => x[1]))];
 
     		let colors = [

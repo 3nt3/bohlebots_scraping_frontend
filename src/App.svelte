@@ -32,8 +32,8 @@
 
     type Entry = [number, string, number];
 
-    let entries: Entry[] = await fetch("http://localhost:8000/").then((res) =>
-      res.json()
+    let entries: Entry[] = await fetch("htts://bohlebots.3nt3.de/api").then(
+      (res) => res.json()
     );
 
     let names = [...new Set(entries.map((x) => x[1]))];
