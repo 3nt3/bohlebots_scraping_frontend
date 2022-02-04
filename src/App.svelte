@@ -108,6 +108,7 @@
                 locale: de,
               },
             },
+            max: new Date().getTime(),
             time: { unit: "day", tooltipFormat: "yyyy-MM-dd" },
           },
         },
