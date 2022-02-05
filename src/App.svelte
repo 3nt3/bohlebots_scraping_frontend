@@ -17,6 +17,15 @@
   let chartCanvas: HTMLCanvasElement;
   let context;
 
+  type Entry = [number, string, number];
+  let entries: Entry[];
+
+  const updateData = async () => {
+    entries = await fetch("https://bohlebots.3nt3.de/api").then((res) =>
+      res.json()
+    );
+  };
+
   onMount(async () => {
     context = chartCanvas.getContext("2d");
 
@@ -30,11 +39,7 @@
       Legend
     );
 
-    type Entry = [number, string, number];
-
-    let entries: Entry[] = await fetch("https://bohlebots.3nt3.de/api").then(
-      (res) => res.json()
-    );
+    await updateData();
 
     let names = [...new Set(entries.map((x) => x[1]))];
 
@@ -52,7 +57,7 @@
 
     let data = {
       datasets: names.map((name, i) => ({
-        label: name,
+        label: `${name} (${entries.filter((e) => e[1] === name).length})`,
         data: entries
           .filter((entry) => entry[1] === name)
           .map((entry) => ({
@@ -114,6 +119,8 @@
         },
       },
     });
+
+    setInterval(() => updateData(), 10000);
   });
 </script>
 
