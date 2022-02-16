@@ -26,6 +26,15 @@
     );
   };
 
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   onMount(async () => {
     context = chartCanvas.getContext("2d");
 
@@ -43,18 +52,6 @@
 
     let names = [...new Set(entries.map((x) => x[1]))];
 
-    let colors = [
-      "#00a8ff",
-      "#9c88ff",
-      "#fbc531",
-      "#4cd137",
-      "#487eb0",
-      "#e84118",
-      "#7f8fa6",
-      "#273c75",
-      "#353b48",
-    ];
-
     let data = {
       datasets: names.map((name, i) => ({
         label: `${name} (${entries.filter((e) => e[1] === name).length})`,
@@ -66,7 +63,7 @@
               new Date(entry[2] * 1000).getHours() +
               new Date(entry[2] * 1000).getMinutes() / 60,
           })),
-        backgroundColor: colors[i],
+        backgroundColor: getRandomColor(),
         pointRadius: 5,
       })),
     };
